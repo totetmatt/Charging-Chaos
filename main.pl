@@ -1,3 +1,4 @@
+
 configOk([],[]):-!.
 
 configOk([Ha|Ta],[Hb|Tb]):-
@@ -8,19 +9,19 @@ solve(OUTLET,DEVICE,SWITCH):-
     false.
 
 switching([A],S,[O]):-
-   
     rev(A,S,O).
 switching([HOUTLET|TOUTLET],SWITCH,[HO|TO]):-
-    write(HOUTLET),
     switching(TOUTLET,SWITCH,TO),
-    rev(HOUSTLET,SWITCH,HO).
+    rev(HOUTLET,SWITCH,HO).
     
-   
-rev([H|T],1,[Hb|T]):-
+rev([],0,[]):-!.   
+rev([H],1,[Hb]):-
+    write(H),
     rev(H,Hb).   
 rev([H|T],SWITCH,[H|X]):-
-    S is SWITCH - 1,
-    rev(T,S,X).
+    rev(T,S,X),
+    S is SWITCH + 1.
+ 
 
 
 
@@ -28,4 +29,9 @@ rev([H|T],SWITCH,[H|X]):-
 rev(1,0).
 rev(0,1).
 
+ler([],0).
+ler([H|T], N):-  
+   ler(T, N1),  
+   N is N1 + 1. 
+    
     
